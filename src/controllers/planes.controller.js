@@ -69,7 +69,15 @@ const getAircraft = async (req, res) => {
 };
 
 const addAircraft = async (req, res) => {
-	res.send("This will create an ircraft in the database");
+    const { id, registration, model, airline, reg_country, picture_url, ps_url, af_url } = req.body;
+
+	const newaircraft = await pool.query(
+		"INSERT INTO aircraft (id, registration, model, airline, reg_country, picture_url, ps_url, af_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+		[id, registration, model, airline, reg_country, picture_url, ps_url, af_url]
+	);
+
+	console.log(newaircraft);
+	res.send("The aircraft was added to the database");
 };
 
 const updateAircraft = async (req, res) => {
@@ -106,6 +114,33 @@ const deleteAirport = async (req, res) => {
 	res.send("This will delete an airport model in the database");
 };
 
+
+// Flight creation:
+
+const getFlight = async (req, res) => {
+	res.send("This will get an flight in the database");
+};
+
+const addFlight = async (req, res) => {
+	const { iata, icao, timestamp, aircraft, position, route_from, route_to } = req.body;
+
+	const newflight = await pool.query(
+		"INSERT INTO flight (iata, icao, timestamp, aircraft, position, route_from, route_to) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+		[iata, icao, timestamp, aircraft, position, route_from, route_to]
+	);
+
+	console.log(newflight);
+	res.send("The flight was added to the database");
+};
+
+const updateFlight = async (req, res) => {
+	res.send("This will update an flight in the database");
+};
+
+const deleteFlight = async (req, res) => {
+	res.send("This will delete an flight in the database");
+};
+
 module.exports = {
 	getAllPlanes,
 	getPlane,
@@ -125,4 +160,8 @@ module.exports = {
 	addAircraft,
 	updateAircraft,
 	deleteAircraft,
+    getFlight,
+    addFlight,
+    updateFlight,
+    deleteFlight
 };

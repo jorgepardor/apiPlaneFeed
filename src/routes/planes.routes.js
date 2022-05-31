@@ -18,6 +18,10 @@ const {
     addAircraft,
     updateAircraft,
     deleteAircraft,
+    getFlight,
+    addFlight,
+    updateFlight,
+    deleteFlight,
 
 } = require("../controllers/planes.controller");
 
@@ -72,3 +76,13 @@ router.post("/model", addModel);
 router.put("/model", updateModel);
 
 router.delete("/model", deleteModel);
+
+//Flight management:
+
+router.get("flightl", getFlight);
+
+router.post("/flight", addFlight);
+
+router.put("/flight", updateFlight);
+
+router.delete("/flight", deleteFlight);
