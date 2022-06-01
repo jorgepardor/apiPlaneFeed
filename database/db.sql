@@ -24,7 +24,7 @@ CREATE TABLE "model"(
     "id" SERIAL PRIMARY KEY,
     "manufacturer" VARCHAR(255) NOT NULL,
     "family" VARCHAR(255) NOT NULL,
-    "model" VARCHAR(255) NOT NULL,
+    "model" VARCHAR(255) UNIQUE NOT NULL ,
     "picture_url" VARCHAR(255) NULL
 );
 CREATE TABLE "airline"(
@@ -56,7 +56,7 @@ CREATE TABLE "airports"(
 
 CREATE TABLE "country"(
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(255) NOT NULL,
+    "name" VARCHAR(255) UNIQUE NOT NULL,
     "flag_url" VARCHAR(255) NULL
 );
 
