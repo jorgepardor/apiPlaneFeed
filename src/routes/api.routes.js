@@ -37,6 +37,7 @@ const {
 	addFlight,
 	updateFlight,
 	deleteFlight,
+	getAllFlights,
 } = require("../controllers/flights.controller");
 
 const {
@@ -47,7 +48,8 @@ const {
 	deleteModel,
 } = require("../controllers/models.controller");
 
-const { getState, addState } = require("../controllers/states.controller");
+const { getState, addState, feedState } = require("../controllers/states.controller");
+const { route } = require("express/lib/application");
 
 const router = Router();
 
@@ -95,7 +97,7 @@ router.delete("/aircraft", deleteAircraft);
 
 //Airport management:
 
-router.get("/airport/:id", getAirport);
+router.get("/airport/:iata", getAirport);
 
 router.get("/airports", getAllAirports);
 
@@ -121,7 +123,9 @@ router.delete("/model", deleteModel);
 
 //Flight management:
 
-router.get("/flight", getFlight);
+router.get("/flight/:iata", getFlight);
+
+router.get("/flights", getAllFlights);
 
 router.post("/flight", addFlight);
 
@@ -134,3 +138,5 @@ router.delete("/flight", deleteFlight);
 router.get("/state", getState);
 
 router.post("/state", addState);
+
+router.get("/states", feedState);

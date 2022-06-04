@@ -2,7 +2,7 @@ CREATE TABLE "state"(
     "id" SERIAL PRIMARY KEY,
     "aircraft_id" VARCHAR(8) NOT NULL,
     "flight_id" VARCHAR(8) NOT NULL,
-    "timestamp" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    "timestamp" INT NOT NULL,
     "latitude" FLOAT8 NOT NULL,
     "longitude" FLOAT8 NOT NULL,
     "altitude" INTEGER NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE "airline"(
 CREATE TABLE "flight"(
     "iata" VARCHAR(8) PRIMARY KEY,
     "icao" VARCHAR(8) NOT NULL,
-    "timestamp" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+    "timestamp" INT NOT NULL,
     "aircraft" VARCHAR(8) NULL,
     "position" INTEGER NOT NULL,
     "route_from" VARCHAR(8) NULL,
@@ -99,13 +99,13 @@ INSERT INTO aircraft (id, registration, model, airline, reg_country, picture_url
 VALUES ('000000', 'EZ-AAA', '1', 'FR', '1', 'xxx', 'xxx', 'xxx');
 
 INSERT INTO flight (iata, icao, timestamp, aircraft, position, route_from, route_to)
-VALUES ('FR335','RYR335', '2016-06-22 19:10:25', '000000', '1', 'MAD', 'BCN');
+VALUES ('FR335','RYR335', '1654366689', '000000', '1', 'MAD', 'BCN');
 
 INSERT INTO state (aircraft_id, flight_id, timestamp, latitude, longitude, altitude, track, speed, squawk)
-VALUES ('000000', 'FR335', '2016-06-22 19:10:25', '1', '1','11111', '180', '1000', '5000');
+VALUES ('000000', 'FR335', '1654366689', '1', '1','11111', '180', '1000', '5000');
 
 INSERT INTO state (aircraft_id, flight_id, timestamp, latitude, longitude, altitude, track, speed, squawk)
-VALUES ('000000', 'FR335', '2016-06-22 19:10:26', '2', '2','11111', '180', '1000', '5000');
+VALUES ('000000', 'FR335', '1654366700', '2', '2','11111', '180', '1000', '5000');
 
 
 
