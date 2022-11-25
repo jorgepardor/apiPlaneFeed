@@ -1,7 +1,31 @@
 const pool = require("../db");
 const State = require("../models/state.models").State;
 
+const insertFlight = async (state) => {
+    console.log(state);
+	try {
+		const newstate = await pool.query(
+			"INSERT INTO flight (iata, icao, timestamp, aircraft, position, route_from, route_to) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+			[
+				state.aircraft_id,
+				state.flight_id,
+				state.timestamp,
+				state.latitude,
+				state.longitude,
+				state.altitude,
+				state.track,
+				state.speed,
+				state.squawk,
+			]
+		);
+		console.log(newstate);
+		return(newstate.rows[0]);
+	} catch (error) {
+		console.log(error);
+		return({ error: error.message });
+	}
 
+};
 
 const insertState = async (state) => {
     console.log(state);
@@ -20,8 +44,10 @@ const insertState = async (state) => {
 				state.squawk,
 			]
 		);
+		console.log(newstate);
 		return(newstate.rows[0]);
 	} catch (error) {
+		console.log(error);
 		return({ error: error.message });
 	}
 	
@@ -35,12 +61,12 @@ const findFlightByFlightId = async (flight_id) => {
 		]);
 
 		if (flight.rows.length === 0) {
-			res.status(404).json({ message: "Flight not found" });
+			return ([]);
 		} else {
-			res.status(200).json(flight.rows);
+			return (flight.rows);
 		}
 	} catch (error) {
-		res.json({ error: error.message });
+		return ({ error: error.message });
 	}
 }
 

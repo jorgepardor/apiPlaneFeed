@@ -7,6 +7,7 @@ const fetch = (...args) =>
 const readFeeder = async () => {
 	const response = await fetch("http://192.168.0.200:8754/flights.json");
 	const body = await response.json();
+	return (body);
 
 	for (let x in body) {
 		const state = new State(body[x]);
@@ -14,12 +15,15 @@ const readFeeder = async () => {
 		if (state.validate()) {
 			console.log(state.json());
 			const findFlight = await database.findFlightByFlightId(state.getFlightId());
+			console.log(findFlight);
 			if (findFlight.length === 0) {
-
+				const insertState = await database.insertState(state.json());
+				console.log( "tuculo" +insertState);
 			}
-
-			// const insertState = await database.insertState(state.json());
-			// console.log(insertState);
+			else {
+				console.log ("otro mensaje")
+			}
+			
 		}
 		
 	}
