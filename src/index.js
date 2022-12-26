@@ -1,6 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
-const cors = require('cors')
+const cors = require('cors');
+const cron = require("node-cron");
+const scheduler = require("./helpers/scheduler.helper.js");
+
 
 
 const apiRoutes = require("./routes/api.routes");
@@ -13,6 +16,11 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use(apiRoutes);
+
+cron.schedule("*/5 * * * * *", function () {
+  scheduler.scheduleReader();
+  // console.log("I'm scheduling here");
+});
 
 
 var corsOptions = {

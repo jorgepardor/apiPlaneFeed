@@ -12,7 +12,7 @@ class Aircraft {
 
 
 
-	constructor(id, registration, model, airline, reg_country, picture_url, ps_url, af_url) {
+	constructor(id, registration = null, model = null, airline = null, reg_country = null, picture_url = null, ps_url = null, af_url = null) {
 		this.fields.id = id || null;
 		this.fields.registration = registration || null;
 		this.fields.model = model || null;
@@ -26,7 +26,10 @@ class Aircraft {
 	json() {
 		return this.fields;
 	}
+	getAircraftId() {
+		return this.fields.id;
+	}
 
 }
 
-exports.Flight = Flight;
+exports.Aircraft = Aircraft;

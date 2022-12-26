@@ -29,7 +29,7 @@ CREATE TABLE "model"(
 );
 CREATE TABLE "airline"(
     "iata" VARCHAR(8) PRIMARY KEY,
-    "icao" VARCHAR(6) NOT NULL,
+    "icao" VARCHAR(6) NULL,
     "name" VARCHAR(255) NOT NULL,
     "country" INT NULL,
     "url" VARCHAR(255) NULL,
@@ -37,16 +37,15 @@ CREATE TABLE "airline"(
 );
 CREATE TABLE "flight"(
     "iata" VARCHAR(8) PRIMARY KEY,
-    "icao" VARCHAR(8) NOT NULL,
-    "timestamp" INT NOT NULL,
+    "icao" VARCHAR(8) NULL,
+    "timestamp" INT NULL,
     "aircraft" VARCHAR(8) NULL,
-    "position" INTEGER NOT NULL,
     "route_from" VARCHAR(8) NULL,
     "route_to" VARCHAR(8) NULL
 );
 CREATE TABLE "airports"(
     "iata" VARCHAR(8) PRIMARY KEY,
-    "icao" VARCHAR(6) NOT NULL,	
+    "icao" VARCHAR(6) NULL,	
     "name" VARCHAR(255) NULL,
     "city" VARCHAR(255) NULL,
     "country" INT NULL,

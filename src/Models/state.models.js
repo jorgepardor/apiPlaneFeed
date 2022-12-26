@@ -37,6 +37,12 @@ class State {
 	getFlightId() {
 		return this.fields.flight_id;
 	}
+	getAircraftId() {
+		return this.fields.aircraft_id;
+	}
+	getFlightId() {
+		return this.fields.flight_id;
+	}
 }
 
 exports.State = State;
