@@ -1,4 +1,5 @@
 const pool = require("../db");
+const scheduler = require("../helpers/scheduler.helper.js");
 
 // Country creation:
 
@@ -63,10 +64,16 @@ const deleteCountry = async (req, res) => {
 	}
 };
 
+const fetchCountries = async (req, res) => {
+	scheduler.fetchCountries()
+	res.status(200)
+};
+
 module.exports = {
 	addCountry,
 	getCountry,
 	getAllCountries,
 	updateCountry,
 	deleteCountry,
+	fetchCountries
 };

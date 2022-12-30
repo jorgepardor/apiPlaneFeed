@@ -59,28 +59,16 @@ CREATE TABLE "country"(
     "flag_url" VARCHAR(255) NULL
 );
 
-
 ALTER TABLE
     "aircraft" ADD CONSTRAINT "aircraft_model_foreign" FOREIGN KEY("model") REFERENCES "model"("id");
 ALTER TABLE
     "aircraft" ADD CONSTRAINT "aircraft_airline_foreign" FOREIGN KEY("airline") REFERENCES "airline"("iata");
-ALTER TABLE
-    "state" ADD CONSTRAINT "state_flight_id_foreign" FOREIGN KEY("flight_id") REFERENCES "flight"("iata");
-ALTER TABLE
-    "flight" ADD CONSTRAINT "flight_aircraft_foreign" FOREIGN KEY("aircraft") REFERENCES "aircraft"("id");
-ALTER TABLE
-    "flight" ADD CONSTRAINT "flight_route_from_foreign" FOREIGN KEY("route_from") REFERENCES "airports"("iata");
-ALTER TABLE
-    "flight" ADD CONSTRAINT "flight_route_to_foreign" FOREIGN KEY("route_to") REFERENCES "airports"("iata");
 ALTER TABLE
     "airports" ADD CONSTRAINT "country_id_foreign" FOREIGN KEY("country") REFERENCES "country"("id");
 ALTER TABLE
     "aircraft" ADD CONSTRAINT "aircraft_id_foreign" FOREIGN KEY("reg_country") REFERENCES "country"("id");
 ALTER TABLE
     "airline" ADD CONSTRAINT "country_id_foreign" FOREIGN KEY("country") REFERENCES "country"("id");
-
-INSERT INTO country (name, flag_url)
-VALUES ('Ireland', 'xxx');
 
 INSERT INTO model (manufacturer, family, model, picture_url)
 VALUES ('boeing', 'B737', 'B737-800', 'xxx');
@@ -105,19 +93,3 @@ VALUES ('000000', 'FR335', '1654366689', '1', '1','11111', '180', '1000', '5000'
 
 INSERT INTO state (aircraft_id, flight_id, timestamp, latitude, longitude, altitude, track, speed, squawk)
 VALUES ('000000', 'FR335', '1654366700', '2', '2','11111', '180', '1000', '5000');
-
-
-
-SELECT * FROM state
-
-SELECT * FROM model
-
-SELECT * FROM airline	
-
-SELECT * FROM aircraft	
-
-SELECT * FROM country
-
-SELECT * FROM airports
-
-SELECT * FROM flight
