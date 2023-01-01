@@ -1,3 +1,6 @@
+
+const cloudinary = require("cloudinary");
+
 const fetch = (...args) =>
 	import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
@@ -19,8 +22,35 @@ const readFeeder = async () => {
 			else {
 				console.log ("otro mensaje")
 			}
-			
 		}
-		
 	}
+};
+
+const readCountries = async () => {
+	const response = await fetch("https://www.flightradar24.com/mobile/countries");
+	const countries = await response.json();
+  return countries.data;
+};
+
+const uploadImage = async (filePath, path) => {
+  const options = {
+    use_filename: true,
+    unique_filename: false,
+    overwrite: true,
+    folder: path
+  };
+
+  try {
+    // Upload the image
+    const result = await cloudinary.v2.uploader.upload(filePath, options);
+    return result.url;
+  } catch (error) {
+    console.error(error);
+    return null
+  }
+};
+
+module.exports = {
+  readCountries,
+  uploadImage
 };

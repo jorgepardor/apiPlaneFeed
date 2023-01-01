@@ -49,16 +49,16 @@ const addFlight = async (flight_id, aircraft_id) => {
 };
 
 const readFeeder = async () => {
-  const response = await fetch("http://192.168.0.200:8754/flights.json");
+  const response = await fetch("http://80.174.124.77:39933/flights.json");
   const body = await response.json();
   // return (body);
   //   console.log(body)
-  const currentPlanes = []
+  const currentPlanes = [];
   for (let x in body) {
-    console.log(x)
+    console.log(x);
     const state = new State(body[x]);
-	const plane = 
-	currentPlanes.push()
+
+    const plane = currentPlanes.push();
 
     // if (state.validate()) {
     //   console.log(state.json());
@@ -72,12 +72,12 @@ const readFeeder = async () => {
 
     //   const insertState = await database.insertState(state.json());
     //   console.log("tuculo" + insertState);
-	  
+
     // } else {
     //   console.log("no hay aviones ahora mismo");
     // }
   }
-  return currentPlanes
+  return currentPlanes;
 };
 
 module.exports = { readFeeder };

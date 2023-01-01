@@ -30,6 +30,7 @@ const {
 	updateCountry,
 	deleteCountry,
 	getAllCountries,
+	fetchCountries
 } = require("../controllers/countries.controller");
 
 const {
@@ -50,6 +51,8 @@ const {
 
 const { getState, addState, feedState } = require("../controllers/states.controller");
 const { route } = require("express/lib/application");
+
+const scheduler = require("../helpers/scheduler.helper.js");
 
 const router = Router();
 
@@ -140,3 +143,7 @@ router.get("/state", getState);
 router.post("/state", addState);
 
 router.get("/states", feedState);
+
+// loaders
+
+router.get("/fetchCountries", fetchCountries);
